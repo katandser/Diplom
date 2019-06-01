@@ -4,5 +4,22 @@
 <body>
     <div th:replace="base :: #nav"></div>
     <div th:replace="base :: #libs"></div>
+    <div class="container">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Название</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="o : ${object}">
+                <tr>
+                    <td th:text="${o}"> </td>
+<!--                    <td> <a class="btn btn-ms btn-block btn-outline-primary"th:href="@{/tournaments/info/{id}(id=${t.id})}">Подробнее</a></td>-->
+                </tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
