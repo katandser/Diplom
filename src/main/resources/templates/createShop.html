@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="base :: #head"></head>
+<body>
+<div th:replace="base :: #nav"></div>
+<div th:replace="base :: #libs"></div>
+<div class="container">
+    <h1 class="p-3">Добавить новый магазин</h1>
+    <form method="POST" class="m-3" th:object="${shop}" id="form">
+
+        <h5>
+            <label>Адресс магазина:</label><br>
+            <input class="form-control"  name="adress">
+        </h5>
+
+        <h5>
+            <label>Название магазина:</label><br>
+            <input class="form-control"  name="name">
+        </h5>
+        <button class="btn btn-lg btn-block btn-outline-primary" type="submit" value="Создать">Создать</button>
+
+    </form>
+</div>
+</body>
+</html>

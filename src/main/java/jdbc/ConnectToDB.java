@@ -9,17 +9,20 @@ import java.util.List;
 public class ConnectToDB implements AutoCloseable {
     private static final String DB_URL = "jdbc:clickhouse://localhost:8123/db_test";
     private static Connection conn;
-    /**
-     * Creates new instance
-     * @throws SQLException in case of connection issue
-     */
+
     public ConnectToDB() throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
     }
-    /**
-     * Queries db to get most popular flight route for ths given year
-     * @throws SQLException in case of query issue
-     */
+
+    public static void saveShop(String adress, String name ) throws SQLException {
+        conn = DriverManager.getConnection(DB_URL,"","1");
+        String query = "insert into db_test.shop (id, name, adress) select generateUUIDv4(), '" + name + "', '" + adress + "'";
+        Statement statement = conn.createStatement();
+        System.out.println(query);
+        statement.executeQuery(query);
+    }
+
+
     public static List<Shop> getShops() throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
         String query = "select * from db_test.shop";
@@ -36,17 +39,6 @@ public class ConnectToDB implements AutoCloseable {
         return listShops;
     }
 
-    public static List<String> getSt() {
-        List <String> l =  new ArrayList<>();
-        return l;
-    }
-
-
-    public static void main() throws Exception {
-        try (ConnectToDB demo = new ConnectToDB()) {
-            demo.getShops();
-        }
-    }
 
     @Override
     public void close() throws Exception {
