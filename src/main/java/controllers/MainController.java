@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.SQLException;
@@ -17,9 +18,6 @@ public class MainController {
     public String index(Model model) throws SQLException {
         List<Shop> listShops = ConnectToDB.getShops();
         model.addAttribute("shops",listShops);
-        for (Shop s: listShops) {
-            System.out.println(s);
-        }
         return "index";
     }
 
@@ -37,6 +35,10 @@ public class MainController {
         } else {
             return "error";
         }
+    }
+    @GetMapping("/{id}")
+    public String showShop(@PathVariable String id, Model m) throws Exception {
+        return "shop";
     }
 
 

@@ -5,21 +5,45 @@
 <div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
 <div class="container">
+
     <h1 class="p-3">Добавить новый магазин</h1>
     <form method="POST" class="m-3" th:object="${shop}" id="form">
+        <label for="validationAdress">Адресс магазина</label>
+        <div class="input-group">
+            <input type="text" class="form-control"  name="adress" id="validationAdress" placeholder="Адресс магазина" aria-describedby="inputGroupPrepend" required>
+        </div>
 
-        <h5>
-            <label>Адресс магазина:</label><br>
-            <input class="form-control"  name="adress">
-        </h5>
-
-        <h5>
-            <label>Название магазина:</label><br>
-            <input class="form-control"  name="name">
-        </h5>
-        <button class="btn btn-lg btn-block btn-outline-primary" type="submit" value="Создать">Создать</button>
-
+        <label for="validationNAme">Название магазина</label>
+        <div class="input-group">
+            <input type="text" class="form-control" name="name" id="validationName" placeholder="Название магазина" required>
+        </div>
+        <div class="container">
+            <br>
+            <button class="btn btn-lg btn-block btn-outline-primary" type="submit" value="Создать">Создать</button>
+        </div>
     </form>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
 </div>
+
 </body>
 </html>

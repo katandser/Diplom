@@ -9,13 +9,15 @@
             <thead>
             <tr>
                 <th scope="col">Название</th>
+                <th scope="col">Адресс</th>
             </tr>
             </thead>
             <tbody>
             <div th:each="s : ${shops}">
                 <tr>
+                    <td th:text="${s.name}"> </td>
                     <td th:text="${s.adress}"> </td>
-<!--                    <td> <a class="btn btn-ms btn-block btn-outline-primary"th:href="@{/tournaments/info/{id}(id=${t.id})}">Подробнее</a></td>-->
+                    <td><a class="btn btn-sm btn-block btn-outline-primary" th:href="@{/{id}(id=${s.id})}" role="button">Подробнее</a></td>
                 </tr>
             </div>
             </tbody>

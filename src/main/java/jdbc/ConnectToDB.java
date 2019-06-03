@@ -18,10 +18,8 @@ public class ConnectToDB implements AutoCloseable {
         conn = DriverManager.getConnection(DB_URL,"","1");
         String query = "insert into db_test.shop (id, name, adress) select generateUUIDv4(), '" + name + "', '" + adress + "'";
         Statement statement = conn.createStatement();
-        System.out.println(query);
         statement.executeQuery(query);
     }
-
 
     public static List<Shop> getShops() throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
