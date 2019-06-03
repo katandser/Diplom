@@ -12,9 +12,9 @@
             </tr>
             </thead>
             <tbody>
-            <div th:each="o : ${object}">
+            <div th:each="s : ${shops}">
                 <tr>
-                    <td th:text="${o}"> </td>
+                    <td th:text="${s.adress}"> </td>
 <!--                    <td> <a class="btn btn-ms btn-block btn-outline-primary"th:href="@{/tournaments/info/{id}(id=${t.id})}">Подробнее</a></td>-->
                 </tr>
             </div>

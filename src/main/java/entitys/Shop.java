@@ -22,4 +22,5 @@ public class Shop {
         this.name = name;
         this.adress = adress;
     }
+
 }

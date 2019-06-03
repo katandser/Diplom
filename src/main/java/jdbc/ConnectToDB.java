@@ -1,5 +1,7 @@
 package jdbc;
 
+import entitys.Shop;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,20 +20,20 @@ public class ConnectToDB implements AutoCloseable {
      * Queries db to get most popular flight route for ths given year
      * @throws SQLException in case of query issue
      */
-    public static List<String> getShops() throws SQLException {
+    public static List<Shop> getShops() throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
         String query = "select * from db_test.shop";
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         ResultSetMetaData rsMetadata = rs.getMetaData();
-        List <String> listShops =  new ArrayList<>();
+        List <Shop> listShops =  new ArrayList<>();
         while (rs.next()) {
-            for (int i = 1; i <= rsMetadata.getColumnCount(); i++) {
-                System.out.print(rs.getString(i) + " ");
-                listShops.add(rs.getString(i));
-            }
-            System.out.println();
+                listShops.add(new Shop(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3)));
         }
+        return listShops;
     }
 
     public static List<String> getSt() {
