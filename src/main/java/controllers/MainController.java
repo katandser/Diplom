@@ -40,24 +40,24 @@ public class MainController {
     @GetMapping("/{id}")
     public String showShop(@PathVariable String id, Model m) throws Exception {
         Shop shop = ConnectToDB.getShop(id);
-        System.out.println(shop.getId());
-        System.out.println(shop.getName());
-        System.out.println(shop.getAdress());
         m.addAttribute("shop",shop);
         return "shop";
     }
 
-    @GetMapping("/{id}/createCheck")
-    public String createCheck(@PathVariable String id, Model m) throws SQLException {
-//        Shop shop = ConnectToDB.getShop(id);
-//        m.addAttribute("shop",shop);
+
+
+    @PostMapping("/{id}/createCheck")
+    public String createCheck(@ModelAttribute Object object, @PathVariable String id) throws SQLException {
+        System.out.println(id);
+        System.out.println(object);
+        //ConnectToDB.saveCheck();
         return "createCheck";
     }
 
-
-
-
-
-
-
+    @GetMapping("/{id}/createCheck")
+    public String createCheck(@PathVariable String id, Model m) throws SQLException {
+        Shop shop = ConnectToDB.getShop(id);
+        m.addAttribute("shop",shop);
+        return "createCheck";
+    }
 }
