@@ -1,5 +1,6 @@
 package controllers;
 
+import entitys.Check;
 import entitys.Shop;
 import jdbc.ConnectToDB;
 import org.springframework.ui.Model;
@@ -47,11 +48,11 @@ public class MainController {
 
 
     @PostMapping("/{id}/createCheck")
-    public String createCheck(@ModelAttribute Object object, @PathVariable String id) throws SQLException {
-        System.out.println(id);
-        System.out.println(object);
-        //ConnectToDB.saveCheck();
-        return "createCheck";
+    public String createCheck(@ModelAttribute Check check, @PathVariable String id) throws SQLException {
+//        System.out.println(id);
+//        System.out.println(check.getSum());
+        ConnectToDB.saveCheck(id,check.getSum());
+        return "redirect:/";
     }
 
     @GetMapping("/{id}/createCheck")

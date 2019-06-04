@@ -24,7 +24,7 @@ public class ConnectToDB implements AutoCloseable {
 
     public static void saveCheck(String shop_id, Double sum) throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
-        String query = "insert into db_test.shop (id_shop, id , date_time, sum ) select " + shop_id + ", generateUUIDv4(), now()-30000, " + sum;
+        String query = "insert into db_test.check (id_shop, id , date_time, sum ) select '" + shop_id + "', generateUUIDv4(), now()-30000, " + sum;
         Statement statement = conn.createStatement();
         statement.executeQuery(query);
     }
