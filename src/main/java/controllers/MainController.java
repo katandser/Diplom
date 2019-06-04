@@ -46,13 +46,18 @@ public class MainController {
     }
 
 
+    @PostMapping("/{id}")
+    public String showInfo(@ModelAttribute Check check,  @PathVariable String id) throws SQLException {
+        //ConnectToDB.saveCheck(id,check.getSum());
+        System.out.println(check.getDate());
+        return "redirect:/" + id;
+    }
+
 
     @PostMapping("/{id}/createCheck")
     public String createCheck(@ModelAttribute Check check, @PathVariable String id) throws SQLException {
-//        System.out.println(id);
-//        System.out.println(check.getSum());
         ConnectToDB.saveCheck(id,check.getSum());
-        return "redirect:/";
+        return "redirect:/" + id;
     }
 
     @GetMapping("/{id}/createCheck")
@@ -60,5 +65,14 @@ public class MainController {
         Shop shop = ConnectToDB.getShop(id);
         m.addAttribute("shop",shop);
         return "createCheck";
+    }
+
+    @GetMapping("/{id}/graphic")
+    public String showGraphic(@PathVariable String id, Model m) throws SQLException {
+
+        //        Shop shop = ConnectToDB.getShop(id);
+//        m.addAttribute("shop",shop);
+
+        return "graphic";
     }
 }

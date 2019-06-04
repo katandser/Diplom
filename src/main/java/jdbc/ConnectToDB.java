@@ -62,7 +62,6 @@ public class ConnectToDB implements AutoCloseable {
     }
 
 
-
     @Override
     public void close() throws Exception {
 

@@ -4,6 +4,15 @@ public class Check {
     private String id;
     private String shop_id;
     private double sum;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getId() {
         return id;
