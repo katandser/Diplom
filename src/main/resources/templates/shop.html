@@ -4,5 +4,11 @@
 <body>
 <div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
+<div class="container" th:each="s : ${shop}">
+    <br>
+    <td th:text="${s.id}"> </td>
+    <a class="btn btn-sm btn-block btn-outline-primary" th:href="@{/{id}/createCheck(id=${s.id})}" role="button">Подробнее</a>
+</div>
+
 </body>
 </html>

@@ -5,16 +5,11 @@
 <div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
 <div class="container">
-    <h1 class="p-3">Добавить новый магазин</h1>
-    <form method="POST" class="m-3" th:object="${shop}" id="form">
-        <label for="validationAdress">Адресс магазина</label>
+    <h1 class="p-3">Добавить новый чек</h1>
+    <form method="POST" class="m-3" id="form">
+        <label for="validationSum">Сумма</label>
         <div class="input-group">
-            <input type="text" class="form-control"  name="adress" id="validationAdress" placeholder="Адресс магазина" aria-describedby="inputGroupPrepend" required>
-        </div>
-
-        <label for="validationNAme">Название магазина</label>
-        <div class="input-group">
-            <input type="text" class="form-control" name="name" id="validationName" placeholder="Название магазина" required>
+            <input type="text" class="form-control"  name="sum" id="validationSum" placeholder="Сумма" aria-describedby="inputGroupPrepend" required>
         </div>
         <div class="container">
             <br>
