@@ -2,6 +2,7 @@ package controllers;
 
 import entitys.Check;
 import entitys.Shop;
+import entitys.infoDay;
 import jdbc.ConnectToDB;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,10 +85,12 @@ public class MainController {
         //System.out.println(date1);
         Shop shop = ConnectToDB.getShop(id);
         List<Double> doubleList;
+        List<infoDay> infoDayList;
         m.addAttribute("shop",shop);
         m.addAttribute("date1",date1);
         if (shop.getId() != "") {
             doubleList = ConnectToDB.getStatistic(id, date1);
+            infoDayList = ConnectToDB.getStatisticEachDay(id,date1);
             Long[] ar = new Long[5];
             if (doubleList.size() == 0) {
                 doubleList.add(0.0);
@@ -98,11 +101,11 @@ public class MainController {
             }
             for (int i = 0; i < 5; i++) {
                 double d  = doubleList.get(i);
-                //d = d * 100;
                 long a = (long) Math.round(d);
-                //d = (double)a / 100;
                 ar[i] = a;
             }
+
+            m.addAttribute("infoDay", infoDayList);
 
             m.addAttribute("count",ar[2]);
             m.addAttribute("avg",ar[1]);

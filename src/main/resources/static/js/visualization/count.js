@@ -5,7 +5,6 @@ google.charts.load('current', {'packages':['corechart']});
 
 function drawChart(date) {
     if (date) {
-    alert(date);
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Element');
         data.addColumn('number', 'Percentage');
