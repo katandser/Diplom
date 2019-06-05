@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -78,12 +80,37 @@ public class MainController {
     @GetMapping("/{id}/graphic/{date1}")
     public String showGraphic(@PathVariable String id, @PathVariable String date1, Model m) throws SQLException {
 
-        System.out.println(date1);
+        //ConnectToDB.generateCheck(id);
+        //System.out.println(date1);
         Shop shop = ConnectToDB.getShop(id);
+        List<Double> doubleList;
         m.addAttribute("shop",shop);
         m.addAttribute("date1",date1);
-        if (shop.getId() != "")
+        if (shop.getId() != "") {
+            doubleList = ConnectToDB.getStatistic(id, date1);
+            Long[] ar = new Long[5];
+            if (doubleList.size() == 0) {
+                doubleList.add(0.0);
+                doubleList.add(0.0);
+                doubleList.add(0.0);
+                doubleList.add(0.0);
+                doubleList.add(0.0);
+            }
+            for (int i = 0; i < 5; i++) {
+                double d  = doubleList.get(i);
+                //d = d * 100;
+                long a = (long) Math.round(d);
+                //d = (double)a / 100;
+                ar[i] = a;
+            }
+
+            m.addAttribute("count",ar[2]);
+            m.addAttribute("avg",ar[1]);
+            m.addAttribute("sum",(ar[0]));
+            m.addAttribute("max",ar[3]);
+            m.addAttribute("min",ar[4]);
             return "graphic";
+        }
         else
             return "error404";
     }

@@ -15,15 +15,32 @@
     // drawChart(7);
 </script>
 
-<div th:date1="${date1}" th::shop="${shop}">
-    <p th:text="${date1}"></p>
-    <p th:text="${shop.id}"></p>
-<!--<a class="btn btn-sm btn-outline-primary" th:onclick="drawChart(' + ${date} + ');">1</a>-->
-<!--<a  th:date="${date}" class="btn btn-sm btn-outline-primary" th:onclick="alert(${date(date=${date})});">1</a>-->
+<div>
+    <div class="d-flex justify-content-center">
+        <h3>Колличество чеков: </h3>    <h3 th:text="${count}"></h3> <h3>шт.</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h3>Общая сумма продаж: </h3>    <h3 th:text="${sum}"></h3> <h3>p.</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h3>Средний чек: </h3>    <h3 th:text="${avg}"></h3> <h3>p.</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h3>Минимальный чек: </h3>    <h3 th:text="${min}"></h3> <h3>p.</h3>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h3>Максимальный чек: </h3>    <h3 th:text="${max}"></h3> <h3>p.</h3>
+    </div>
+
+
+
+
+
+
+
 </div>
 
-<div th:onload="@{alert('{id}');(id=${shop.id})}" ></div>
-
+<body th:onload="@{drawChart('{id}');(id=${shop.id})}" ></body>
 
 <div class="container">
     <div id="chart_div"></div>
