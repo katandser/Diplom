@@ -8,7 +8,7 @@
 <div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!--<script type="text/javascript" th:src="@{/js/visualization/Count.js}"></script>-->
+
 
 <!--<script type="text/javascript" th:src="@{/js/validation.js}"/>-->
 
@@ -16,16 +16,15 @@
 <!--<script src="daterangepicker/moment.js"></script>-->
 <!--<script src="daterangepicker/daterangepicker.js"></script>-->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="daterangepicker/moment.js"></script>
-<script src="daterangepicker/daterangepicker.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
+<!--<script src="bootstrap/js/bootstrap.min.js"></script>-->
+<!--<script src="daterangepicker/moment.js"></script>-->
+<!--<script src="daterangepicker/daterangepicker.js"></script>-->
 
 
-<div class="container" th:each="s : ${shop}">
+<div class="container" >
     <br>
-<!--    <p th:text=*{shop.adress}"></p>-->
-    <a class="btn btn-sm btn-outline-primary" th:href="@{/{id}/createCheck(id=${s.id})}" role="button">Добавить чек</a>
+    <a class="btn btn-sm btn-outline-primary" th:href="@{/{id}/createCheck(id=${shop.id})}" role="button">Добавить чек</a>
 </div>
 
 
@@ -48,6 +47,9 @@
         </div>
     </div>
 </form>
+
+
+
 
 </body>
 

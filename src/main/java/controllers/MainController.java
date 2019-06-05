@@ -75,13 +75,13 @@ public class MainController {
     }
 
 
-    @GetMapping("/{id}/graphic/{date}")
-    public String showGraphic(@PathVariable String id, @PathVariable String date, Model m) throws SQLException {
+    @GetMapping("/{id}/graphic/{date1}")
+    public String showGraphic(@PathVariable String id, @PathVariable String date1, Model m) throws SQLException {
 
-        System.out.println(date);
+        System.out.println(date1);
         Shop shop = ConnectToDB.getShop(id);
         m.addAttribute("shop",shop);
-
+        m.addAttribute("date1",date1);
         if (shop.getId() != "")
             return "graphic";
         else
