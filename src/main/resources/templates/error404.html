@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <div th:replace="base :: #head"></div>
+    <title>404</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1 class="text-danger">404</h1>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <h1>Страница не найдена</h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <p>Скорее всего, вы попали сюда из-за опечятки в адресе страницы.</p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <p> Попробуйте <a href='/'> вернуться на главную</a></p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <img class="image" th:src="@{/js/404.jpg}" />
+    </div>
+</div>
+</body>
+</html>

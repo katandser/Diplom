@@ -42,15 +42,19 @@ public class MainController {
     public String showShop(@PathVariable String id, Model m) throws Exception {
         Shop shop = ConnectToDB.getShop(id);
         m.addAttribute("shop",shop);
-        return "shop";
+        if (shop.getId() != "")
+            return "shop";
+        else
+            return "error404";
     }
+
 
 
     @PostMapping("/{id}")
     public String showInfo(@ModelAttribute Check check,  @PathVariable String id) throws SQLException {
         //ConnectToDB.saveCheck(id,check.getSum());
-        System.out.println(check.getDate());
-        return "redirect:/" + id;
+        //System.out.println(check.getDate());
+        return "redirect:/" + id + "/graphic/" + check.getDate();
     }
 
 
@@ -64,15 +68,23 @@ public class MainController {
     public String createCheck(@PathVariable String id, Model m) throws SQLException {
         Shop shop = ConnectToDB.getShop(id);
         m.addAttribute("shop",shop);
-        return "createCheck";
+        if (shop.getId() != "")
+            return "createCheck";
+        else
+            return "error404";
     }
 
-    @GetMapping("/{id}/graphic")
-    public String showGraphic(@PathVariable String id, Model m) throws SQLException {
 
-        //        Shop shop = ConnectToDB.getShop(id);
-//        m.addAttribute("shop",shop);
+    @GetMapping("/{id}/graphic/{date}")
+    public String showGraphic(@PathVariable String id, @PathVariable String date, Model m) throws SQLException {
 
-        return "graphic";
+        System.out.println(date);
+        Shop shop = ConnectToDB.getShop(id);
+        m.addAttribute("shop",shop);
+
+        if (shop.getId() != "")
+            return "graphic";
+        else
+            return "error404";
     }
 }

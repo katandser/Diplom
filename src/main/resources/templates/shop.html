@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="base :: #head"></head>
+<head>
+    <div th:replace="base :: #head"></div>
+    <title>Магазин</title>
+</head>
 <body>
 <div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
@@ -21,17 +24,18 @@
 
 <div class="container" th:each="s : ${shop}">
     <br>
-    <a class="btn btn-sm btn-block btn-outline-primary" th:href="@{/{id}/createCheck(id=${s.id})}" role="button">Подробнее</a>
+<!--    <p th:text=*{shop.adress}"></p>-->
+    <a class="btn btn-sm btn-outline-primary" th:href="@{/{id}/createCheck(id=${s.id})}" role="button">Добавить чек</a>
 </div>
 
 
-<form   th:action="@{/{id}/graphic(id=${shop.id})}">
+<form method="POST">
     <div class="container">
 <!--        <a class="btn btn-sm btn-outline-primary" onclick="check()" type="submit" th:href="@{/{id}/graphic(id=${s.id})}"  formnovalidate  value="graf">uhabr</a>-->
          <button class="btn btn-sm btn-outline-primary" type="submit" >График</button>
 
     </div>
-    <div class="container" method="POST" >
+    <div class="container" >
         <div class="row">
             <label for="validationStartDate">C</label>
             <div class="col-sm-3" th:object="${check1}" >
@@ -45,19 +49,6 @@
     </div>
 </form>
 
-<script>
-    function check() {
-        if(document.getElementById("validationStartDate").value != "")
-        {
-            alert("d");
-        }else
-            alert("n");
-    }
-</script>
-
-<div class="container">
-    <div id="chart_div"></div>
-</div>
 </body>
 
 </html>

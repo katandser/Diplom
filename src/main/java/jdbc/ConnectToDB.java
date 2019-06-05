@@ -35,7 +35,7 @@ public class ConnectToDB implements AutoCloseable {
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
         ResultSetMetaData rsMetadata = rs.getMetaData();
-        List <Shop> listShops =  new ArrayList<>();
+        List <Shop> listShops = new ArrayList<>();
         while (rs.next()) {
                 listShops.add(new Shop(
                         rs.getString(1),
