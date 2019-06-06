@@ -105,7 +105,7 @@ public class MainController {
                 ar[i] = a;
             }
 
-            m.addAttribute("infoDay", infoDayList);
+            m.addAttribute("infoDay", infoDayList.get(0));
 
             m.addAttribute("count",ar[2]);
             m.addAttribute("avg",ar[1]);
