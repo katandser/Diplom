@@ -77,7 +77,6 @@ public class MainController {
             return "error404";
     }
 
-
     @GetMapping("/{id}/graphic/{date1}")
     public String showGraphic(@PathVariable String id, @PathVariable String date1, Model m) throws SQLException {
 
@@ -109,7 +108,7 @@ public class MainController {
 
             m.addAttribute("count",ar[2]);
             m.addAttribute("avg",ar[1]);
-            m.addAttribute("sum",(ar[0]));
+            m.addAttribute("sum",ar[0]);
             m.addAttribute("max",ar[3]);
             m.addAttribute("min",ar[4]);
             return "graphic";

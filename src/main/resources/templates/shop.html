@@ -24,18 +24,16 @@
 
 <div class="container" >
     <br>
-    <a class="btn btn-sm btn-outline-primary" th:href="@{/{id}/createCheck(id=${shop.id})}" role="button">Добавить чек</a>
 </div>
 
-
 <form method="POST">
-    <div class="container">
+    <div class="container d-flex justify-content-center">
+            <a class="btn btn-sm btn-outline-primary col-sm-3" th:href="@{/{id}/createCheck(id=${shop.id})}" role="button">Добавить чек</a>
 <!--        <a class="btn btn-sm btn-outline-primary" onclick="check()" type="submit" th:href="@{/{id}/graphic(id=${s.id})}"  formnovalidate  value="graf">uhabr</a>-->
-         <button class="btn btn-sm btn-outline-primary" type="submit" >График</button>
-
+         <button class="btn btn-sm btn-outline-primary col-sm-3" type="submit" >График</button>
     </div>
-    <div class="container" >
-        <div class="row">
+    <br><br><br>
+    <div class="container d-flex justify-content-center" >
             <label for="validationStartDate">C</label>
             <div class="col-sm-3" th:object="${check1}" >
                 <input type="date" class="form-control" id="validationStartDate" name="date" placeholder="Дата" required>
@@ -44,12 +42,8 @@
             <div class="col-sm-3" th:object="${check2}">
                 <input type="date" class="form-control" id="validationEndDate" name="date" placeholder="Дата" required>
             </div>
-        </div>
     </div>
 </form>
-
-
-
 
 </body>
 
