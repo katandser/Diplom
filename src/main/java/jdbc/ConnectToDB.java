@@ -25,22 +25,10 @@ public class ConnectToDB implements AutoCloseable {
 
     public static void saveCheck(String shop_id, Double sum) throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
-        for (int j = 0; j < 10; j++)
-        for (int i = 0; i < 1000000; i++) {
-            if (i % 100 == 0) {
-                System.out.println(i);
-            }
-            Random r = new Random();
-            double MAX_RAND = 10000, MIN_RAND = 0;
-            double a = Math.random() * (MAX_RAND - MIN_RAND) + MIN_RAND;
-            a = Math.rint(100.0 * a) / 100.0;
-            //saveCheck(shop_id, a);
-            sum = a;
-            Random rnd = new Random();
-            String query = "insert into db_test.check (id_shop, id , date_time, sum ) select '" + shop_id + "', generateUUIDv4(), now()-" + rnd.nextInt(1000000) + ", " + sum;
-            Statement statement = conn.createStatement();
-            statement.executeQuery(query);
-        }
+        Random rnd = new Random();
+        String query = "insert into db_test.check (id_shop, id , date_time, sum ) select '" + shop_id + "', generateUUIDv4(), now()-" + rnd.nextInt(1000000) + ", " + sum;
+        Statement statement = conn.createStatement();
+        statement.executeQuery(query);
     }
 
     public static List<Shop> getShops() throws SQLException {
@@ -76,7 +64,6 @@ public class ConnectToDB implements AutoCloseable {
     }
 
     public static void generateCheck(String shop_id) throws SQLException {
-
             saveCheck(shop_id,1.1);
 
     }

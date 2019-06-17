@@ -116,4 +116,15 @@ public class MainController {
         else
             return "error404";
     }
+
+
+    @GetMapping("/comparisonShop")
+    public String comparisonShop(Model model) throws SQLException {
+        List<Shop> listShops = ConnectToDB.getShops();
+        model.addAttribute("shops",listShops);
+        return "comparisonShop";
+    }
+
 }
+
+
