@@ -99,8 +99,8 @@ public class ConnectToDB implements AutoCloseable {
         String[] d = date.split(",");
         conn = DriverManager.getConnection(DB_URL,"","1");
         String query = "select sum(sum), avg(sum), count(sum) from db_test.summing_check where id_shop = '" + shop_id + "'\n" +
-                "                                                and date_time > toDate('" + d[0] + "')\n" +
-                "                                                and date_time < toDate('" + d[1] + "')\n" +
+                "                                                and date_time >= toDate('" + d[0] + "')\n" +
+                "                                                and date_time <= toDate('" + d[1] + "')\n" +
                 "                                                group by id_shop";
         Statement statement = conn.createStatement();
         ResultSet rs = statement.executeQuery(query);
@@ -118,8 +118,8 @@ public class ConnectToDB implements AutoCloseable {
         String[] d = date.split(",");
         conn = DriverManager.getConnection(DB_URL,"","1");
         String query = "select sum(sum), count(sum), toDate(date_time) from db_test.summing_check where id_shop = '" + shop_id + "'\n" +
-                "                                                and date_time > toDate('" + d[0] + "')\n" +
-                "                                                and date_time < toDate('" + d[1] + "')\n" +
+                "                                                and date_time >= toDate('" + d[0] + "')\n" +
+                "                                                and date_time <= toDate('" + d[1] + "')\n" +
                 "                                                group by id_shop, toDate(date_time)\n" +
                 "                                                order by toDate(date_time)";
         Statement statement = conn.createStatement();
@@ -131,10 +131,6 @@ public class ConnectToDB implements AutoCloseable {
         }
         return infoDayList;
     }
-
-
-
-
 
     @Override
     public void close() throws Exception {

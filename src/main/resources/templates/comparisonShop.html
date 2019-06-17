@@ -8,7 +8,18 @@
 <div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
 <script type="text/javascript" th:src="@{/js/visualization/comShops.js}"></script>
+<div class="container d-flex justify-content-center" >
+    <label for="date1">C</label>
+    <div class="col-sm-3" th:object="${check1}" >
+        <input type="date" class="form-control" id="date1" name="date1" placeholder="Дата" required>
+    </div>
+    <label for="date2">По</label>
+    <div class="col-sm-3" th:object="${check2}">
+        <input type="date" class="form-control" id="date2" name="date2" placeholder="Дата" required>
+    </div>
+</div>
 <div class="container">
+
     <table class="table table-sm">
         <thead>
         <tr>
@@ -31,7 +42,7 @@
 <div class="container" >
     <br>
     <div class="d-flex justify-content-center" >
-        <button class="btn btn-sm btn-outline-primary col-sm-3" th:onclick="@{show('{sh}');(sh=${sh})}" >Отобразить информацию</button>
+        <button class="btn btn-sm btn-outline-primary col-sm-3" type="submit" th:onclick="@{show('{sh}');(sh=${sh})}" >Отобразить информацию</button>
     </div>
 </div>
 </body>

@@ -2,29 +2,24 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <div th:replace="base :: #head"></div>
-    <title>Магазины</title>
+    <title>Информация</title>
 </head>
 <body>
-<div th:replace="base :: #nav1"></div>
+<div th:replace="base :: #nav"></div>
 <div th:replace="base :: #libs"></div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" th:src="@{/js/visualization/graphicsComShops.js}"></script>
+
+
+<body th:onload="@{drawChart('{info}');(info=${infoDay})}" ></body>
+
 <div class="container">
-    <table class="table table-sm">
-        <thead>
-        <tr>
-            <th scope="col">Название</th>
-            <th scope="col">Адресс</th>
-        </tr>
-        </thead>
-        <tbody>
-        <div th:each="s : ${shops}">
-            <tr>
-                <td th:text="${s.name}"> </td>
-                <td th:text="${s.adress}"> </td>
-                <td><a class="btn btn-sm btn-block btn-outline-primary" th:href="@{/{id}(id=${s.id})}" role="button">Подробнее</a></td>
-            </tr>
-        </div>
-        </tbody>
-    </table>
+    <div id="chart_div"></div>
 </div>
+<div class="container">
+    <div id="chart_div2"></div>
+</div>
+
 </body>
+
 </html>

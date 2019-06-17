@@ -21,18 +21,24 @@ function drawChart(date) {
         data1.setCell(parseInt(i), 0, data_post1[0]);
         data1.setCell(parseInt(i), 1, parseFloat(data_post1[2]));
     }
-    var options = {'title': '',
+    var options = {'title': 'Количество чеков',
         'width':1000,
         'height':800,
         isStacked: true,
-        // curveType: 'function'
+        curveType: 'function'
+    };
+
+    var options1 = {'title': 'Сумма чеков',
+        'width':1000,
+        'height':800,
+        isStacked: true,
+        curveType: 'function'
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     var chart2 = new google.visualization.LineChart(document.getElementById('chart_div2'));
 
     chart.draw(data, options);
-    chart2.draw(data1, options);
-
+    chart2.draw(data1, options1);
 
 }

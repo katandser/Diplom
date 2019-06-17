@@ -7,7 +7,12 @@ function show(checkId) {
             finalString += dd[i] + ",";
         }
     }
+    finalString += "/";
+    finalString += document.getElementById('date1').value + ",";
+    finalString += document.getElementById('date2').value;
 
-
-    window.location = "/comparisonShop/" + finalString;
+    if (document.getElementById('date1').value != ""
+        && document.getElementById('date2').value != "") {
+        window.location = "/comparisonShop/" + finalString;
+    }
 }

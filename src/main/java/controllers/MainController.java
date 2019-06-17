@@ -79,9 +79,6 @@ public class MainController {
 
     @GetMapping("/{id}/graphic/{date1}")
     public String showGraphic(@PathVariable String id, @PathVariable String date1, Model m) throws SQLException {
-
-        //ConnectToDB.generateCheck(id);
-        //System.out.println(date1);
         Shop shop = ConnectToDB.getShop(id);
         List<Double> doubleList;
         List<infoDay> infoDayList;
@@ -101,12 +98,10 @@ public class MainController {
                 long a = (long) Math.round(d);
                 ar[i] = a;
             }
-
             String finalString = "";
             for (infoDay infoDay: infoDayList) {
                 finalString += infoDay.getDate() + "," + infoDay.getCount() + "," + infoDay.getSum() + ";";
             }
-
             finalString = finalString.substring(0, finalString.length() - 1);
             m.addAttribute("infoDay", finalString);
             m.addAttribute("count",ar[2]);
@@ -122,7 +117,6 @@ public class MainController {
     @GetMapping("/comparisonShop")
     public String comparisonShop(Model model) throws SQLException {
         List<Shop> listShops = ConnectToDB.getShops();
-//        model.addAttribute("shops",listShops);
         String string = "";
         for (Shop s: listShops) {
             string += s.getId() + ",";
@@ -130,20 +124,39 @@ public class MainController {
         string = string.substring(0, string.length() - 1);
         model.addAttribute("shops",listShops);
         model.addAttribute("sh",string);
-
         return "comparisonShop";
     }
 
-    @GetMapping("/comparisonShop/{shops}")
-    public String visualComShop(Model model, @PathVariable String shops) throws SQLException {
+    @GetMapping("/comparisonShop/{shops}/{date1}")
+    public String visualComShop(Model m, @PathVariable String shops, @PathVariable String date1) throws SQLException {
         List<Shop> listShops = ConnectToDB.getShops(shops);
-//        String string = "";
-//        for (Shop s: listShops) {
-//            string += s.getId() + ",";
-//        }
-        model.addAttribute("shops",listShops);
-//        model.addAttribute("sh",string);
-
+        List<List<Double>> doubleList;
+        List<List<infoDay>> infoDayList;
+        String finalString = "";
+        for (Shop s: listShops) {
+            List<Double> doubleL;
+            List<infoDay> infoDayL;
+            doubleL = ConnectToDB.getStatistic(s.getId(), date1);
+            infoDayL = ConnectToDB.getStatisticEachDay(s.getId(),date1);
+            Long[] ar = new Long[3];
+            if (doubleL.size() == 0) {
+                doubleL.add(0.0);
+                doubleL.add(0.0);
+                doubleL.add(0.0);
+            }
+            for (int i = 0; i < 3; i++) {
+                double d  = doubleL.get(i);
+                long a = (long) Math.round(d);
+                ar[i] = a;
+            }
+            for (infoDay infoD: infoDayL) {
+                finalString += infoD.getDate() + "," + infoD.getCount() + "," + infoD.getSum() + ";";
+            }
+            finalString += "_";
+        }
+        finalString = finalString.substring(0, finalString.length() - 1);
+        m.addAttribute("infoDay", finalString);
+        m.addAttribute("shops",listShops);
         return "visualComShop";
     }
 
