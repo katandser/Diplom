@@ -8,12 +8,6 @@ function show(checkId) {
         }
     }
 
-    // var checkbox = document.get ('fluency');
-    // if (checkbox.checked != true){
-    //     alert("you need to be fluent in English to apply for the job");
-    //
-    //
-
 
     window.location = "/comparisonShop/" + finalString;
 }

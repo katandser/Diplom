@@ -4,7 +4,6 @@ public class infoDay {
     private int count;
     private double sum;
     private String date;
-
     public int getCount() {
         return count;
     }

@@ -101,7 +101,14 @@ public class MainController {
                 long a = (long) Math.round(d);
                 ar[i] = a;
             }
-            m.addAttribute("infoDay", infoDayList.get(0));
+
+            String finalString = "";
+            for (infoDay infoDay: infoDayList) {
+                finalString += infoDay.getDate() + "," + infoDay.getCount() + "," + infoDay.getSum() + ";";
+            }
+
+            finalString = finalString.substring(0, finalString.length() - 1);
+            m.addAttribute("infoDay", finalString);
             m.addAttribute("count",ar[2]);
             m.addAttribute("avg",ar[1]);
             m.addAttribute("sum",ar[0]);
