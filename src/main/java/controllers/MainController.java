@@ -90,27 +90,21 @@ public class MainController {
         if (shop.getId() != "") {
             doubleList = ConnectToDB.getStatistic(id, date1);
             infoDayList = ConnectToDB.getStatisticEachDay(id,date1);
-            Long[] ar = new Long[5];
+            Long[] ar = new Long[3];
             if (doubleList.size() == 0) {
                 doubleList.add(0.0);
                 doubleList.add(0.0);
                 doubleList.add(0.0);
-                doubleList.add(0.0);
-                doubleList.add(0.0);
             }
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 double d  = doubleList.get(i);
                 long a = (long) Math.round(d);
                 ar[i] = a;
             }
-
             m.addAttribute("infoDay", infoDayList.get(0));
-
             m.addAttribute("count",ar[2]);
             m.addAttribute("avg",ar[1]);
             m.addAttribute("sum",ar[0]);
-            m.addAttribute("max",ar[3]);
-            m.addAttribute("min",ar[4]);
             return "graphic";
         }
         else
@@ -121,8 +115,30 @@ public class MainController {
     @GetMapping("/comparisonShop")
     public String comparisonShop(Model model) throws SQLException {
         List<Shop> listShops = ConnectToDB.getShops();
+//        model.addAttribute("shops",listShops);
+        String string = "";
+        for (Shop s: listShops) {
+            string += s.getId() + ",";
+        }
+        string = string.substring(0, string.length() - 1);
         model.addAttribute("shops",listShops);
+        model.addAttribute("sh",string);
+
         return "comparisonShop";
+    }
+
+    @GetMapping("/comparisonShop/{shops}")
+    public String visualComShop(Model model) throws SQLException {
+        List<Shop> listShops = ConnectToDB.getShops();
+//        String string = "";
+//        for (Shop s: listShops) {
+//            string += s.getId() + ",";
+//        }
+        model.addAttribute("shops",listShops);
+//        model.addAttribute("sh",string);
+
+
+        return "visualComShop";
     }
 
 }

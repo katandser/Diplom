@@ -71,7 +71,7 @@ public class ConnectToDB implements AutoCloseable {
     public static List<Double> getStatistic(String shop_id, String date) throws SQLException {
         String[] d = date.split(",");
         conn = DriverManager.getConnection(DB_URL,"","1");
-        String query = "select sum(sum), avg(sum), count(sum), max(sum), min(sum) from db_test.summing_check where id_shop = '" + shop_id + "'\n" +
+        String query = "select sum(sum), avg(sum), count(sum) from db_test.summing_check where id_shop = '" + shop_id + "'\n" +
                 "                                                and date_time > toDate('" + d[0] + "')\n" +
                 "                                                and date_time < toDate('" + d[1] + "')\n" +
                 "                                                group by id_shop";
@@ -83,8 +83,6 @@ public class ConnectToDB implements AutoCloseable {
             doubleList.add(Double.parseDouble(rs.getString(1)));
             doubleList.add(Double.parseDouble(rs.getString(2)));
             doubleList.add(Double.parseDouble(rs.getString(3)));
-            doubleList.add(Double.parseDouble(rs.getString(4)));
-            doubleList.add(Double.parseDouble(rs.getString(5)));
         }
         return doubleList;
     }
