@@ -128,15 +128,14 @@ public class MainController {
     }
 
     @GetMapping("/comparisonShop/{shops}")
-    public String visualComShop(Model model) throws SQLException {
-        List<Shop> listShops = ConnectToDB.getShops();
+    public String visualComShop(Model model, @PathVariable String shops) throws SQLException {
+        List<Shop> listShops = ConnectToDB.getShops(shops);
 //        String string = "";
 //        for (Shop s: listShops) {
 //            string += s.getId() + ",";
 //        }
         model.addAttribute("shops",listShops);
 //        model.addAttribute("sh",string);
-
 
         return "visualComShop";
     }

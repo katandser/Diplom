@@ -47,6 +47,34 @@ public class ConnectToDB implements AutoCloseable {
         return listShops;
     }
 
+    public static List<Shop> getShops(String shops) throws SQLException {
+        String[] shop = shops.split(",");
+
+        conn = DriverManager.getConnection(DB_URL,"","1");
+        String query = "select * from db_test.shop where id ='";
+        int i = 0;
+        for (String s: shop) {
+            if (i == 0) {
+                query += s + "'";
+            }
+            else {
+                query += " or id='" + s + "'";
+            }
+            i++;
+        }
+        Statement statement = conn.createStatement();
+        ResultSet rs = statement.executeQuery(query);
+        ResultSetMetaData rsMetadata = rs.getMetaData();
+        List <Shop> listShops = new ArrayList<>();
+        while (rs.next()) {
+            listShops.add(new Shop(
+                    rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3)));
+        }
+        return listShops;
+    }
+
     public static Shop getShop(String shop_id) throws SQLException {
         conn = DriverManager.getConnection(DB_URL,"","1");
         String query = "select * from db_test.shop where id='" + shop_id+ "'";
