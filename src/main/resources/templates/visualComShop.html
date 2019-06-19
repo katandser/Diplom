@@ -10,13 +10,53 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" th:src="@{/js/visualization/graphicsComShops.js}"></script>
 
+<div class="container">
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Адресс</th>
+            <th scope="col">Количество чеков</th>
+            <th scope="col">Сумма чеков</th>
+            <th scope="col">Средний чек</th>
+        </tr>
+        </thead>
+        <tbody>
+        <div>
+            <tr>
+                <td> Мария-ра </td>
+                <td> Ленина 189</td>
+                <td> 1480179</td>
+                <td> 7397302442,05р.</td>
+                <td> 4997 </td>
+            </tr>
+            <tr>
+                <td> Мария-ра </td>
+                <td> Островского 8</td>
+                <td> 1208329 </td>
+                <td> 3854656467,28р.</td>
+                <td> 4999 </td>
+            </tr>
+            <tr>
+                <td> Мария-ра </td>
+                <td> Юрина 167</td>
+                <td> 439854</td>
+                <td> 2200590664,75р.</td>
+                <td> 5001</td>
+            </tr>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+</div>
+
 
 <body th:onload="@{drawChart('{info}');(info=${infoDay})}" ></body>
 
-7397302442,05
-3854656467,28
 
-2200590664,75
+
+
+
 
 <div class="container">
     <div id="chart_div"></div>
