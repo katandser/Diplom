@@ -1,5 +1,6 @@
 package jdbc;
 
+import entitys.Check;
 import entitys.Shop;
 import entitys.infoDay;
 
@@ -13,6 +14,7 @@ public class ConnectToDB implements AutoCloseable {
     private static Connection conn;
 
     public ConnectToDB() throws SQLException {
+        Check check = new Check();
         conn = DriverManager.getConnection(DB_URL,"","1");
     }
 
