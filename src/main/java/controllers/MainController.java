@@ -22,6 +22,7 @@ public class MainController {
     public String index(Model model) throws SQLException {
         List<Shop> listShops = ConnectToDB.getShops();
         model.addAttribute("shops",listShops);
+
         return "index";
     }
 
